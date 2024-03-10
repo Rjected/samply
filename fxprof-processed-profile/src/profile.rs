@@ -119,9 +119,19 @@ impl Profile {
     /// Create a new profile.
     ///
     /// The `product` is the name of the main application which was profiled.
-    /// The `reference_timestamp` is some arbitrary absolute timestamp which all
-    /// other timestamps in the profile data are relative to. The `interval` is the intended
-    /// time delta between samples.
+    ///
+    /// The `reference_timestamp` is some arbitrary absolute timestamp which all other timestamps
+    /// in the profile data are relative to.
+    ///
+    /// The `interval` is the intended time delta between samples.
+    ///
+    /// # Example
+    /// ```
+    /// use fxprof_processed_profile::{Profile, ReferenceTimestamp, SamplingInterval};
+    /// use std::time::SystemTime;
+    ///
+    /// let profile = Profile::new("My app", SystemTime::now().into(), SamplingInterval::from_millis(1));
+    /// ```
     pub fn new(
         product: &str,
         reference_timestamp: ReferenceTimestamp,
